@@ -9,31 +9,37 @@ tags:  refactoring c
 
 ## Notizen von Peter
 
-* refactoring with and without tools   * add precondition: indentifying paragraphs
+* refactoring with and without tools   * add precondition: identifying paragraphs
   * hat andere objectives
   * neu 2. connect: which tools?
   * concrete: ask which tools they have -> homework
   * motivation no tools
   * plug book
-  * dann demo extract method manuel (statt abfragen)
+  * dann demo extract method manually (statt abfragen)
   * Conclusion: safe? (test nicht extra besprochen)
 
 # Refactoring without tools  TODO
 
-You don't always have the tools you'd like to have, and they don't always work totally reliably. How do you handle that?
+Do you know what tools you have available? You don't always have the ones you'd like to have, and they don't always work totally reliably. How do you handle that?
+
+## Prerequisite
+
+[Identify Paragraphs]({% link _learning_hours/refactoring/identify_paragraphs.md %})
 
 ## Learning Goals
 
-Von Slides abtippen, p. 84
+* Learn how to refactor even when tools are not available or not working
+* Know and apply the rule to be no more than 1-3 steps away from working code
+* Get to know the IDE's refactoring tools
 
 ## Session Outline
 
-* 5 min connect: what can go wrong?
+* 5 min connect: what can go wrong?     TODO - longer?
 * 10 min concept: Steps of Extract Function
 * 30 min do: pairs refactor Tennis1
-* 5 min reflect: what difference does fast, good tests make?
+* 5 min reflect: what difference do fast, good tests make?
 
-### Connect
+### Connect 1
 
 Ask the group - What can go wrong when refactoring? How do you know if your refactoring was safe? Gather comments from the whole group and note them in a shared document or whiteboard.
 
@@ -41,38 +47,46 @@ This is a [Three Facts]({% link _activities/connect/three_facts.md %}) connect.
 
 Hopefully people will know that refactoring can be dangerous and the compiler and tests can protect you from mistakes.
 
+### Connect 2
+
+Ask the group - What refactoring tools are you using? Collect comments from the whole group and put them into a shared document or whiteboard. Hopefully they know some of the tools available to them.
+
+Next ask them to find out which tools their IDE supports. Let them write down the results in a shared document or whiteboard.
+
+This is a [Web Hunt]({% link _activities/connect/webhunt.md %}) connect.
+
+Hopefully people will realise that their IDE is much more powerful than they thought.
+
+#### Homework
+
+Ask each member of the group to pick a tool they don't use often enough (or haven't used before) and make an effort to use it more often in the coming week(s). If you have another session with them, ask them how it was going in the next session.
+
 ### Concept - Refactoring steps
 
-Sometimes refactoring tools don't have the refactoring you want. Sometimes they fail. It's useful to be able to plan and do refactorings without making mistakes even without much tool support. The classic "Refactoring" book to a large extent comprises checklists to break down a bigger change into short, safe steps, even when you have no refactoring tools. You rely on your compiler and your unit tests. You can summarize the way you work as:
+Ask the group - Why would you want to refactor without tools?
 
-"only be 1-3 undo steps away from passing tests"
+Introduce them to the Golden Rule: Never be more than 1-3 steps away from working code. This means that you can undo your changes back to a working state in one to three steps, but also that you will reach a new, working state in one to three steps.
 
-That means that if the tests fail unexpectedly, you can always get back to a green state by doing 1-3 undo steps in your editor. You won't lose much work, and you can try again in a better way.
+Reference Martin Fowler's Refactoring book to bring across the notion of proven step-by-step recipes for refactorings.
 
-Explain this idea. As a group, come up with the steps for "Extract Method" or similar. (Use "Extract Function" if that is idiomatic for your language)
+Demo an example refactoring, e.g. the steps to Extract Method (or Extract Function, depending on your language):
 
-Imagine you are looking at a page of code from a long method and you've identified a block within it that you want to do "Extract Method" on.
-
-1. Copy the block of code into the clipboard.
-1. Declare a new empty, void method with no arguments. Call it 'foo' or something.
-1. Paste the code into it from the clipboard.
-1. Work out what the method should be called and rename it.
-1. Work out what the return type should be and fix up the method body to return it.
-1. Work out what the arguments should be and fix up the method body to use them.
+1. Copy the block of code into the clipboard (copy, not cut).
+1. Create a new, empty void method with no arguments. Give it a nonsensical name like 'foo' or 'applesauce'.
+1. Paste the code from the clipboard into that method.
+1. Figure out what the return type should be and change the method to return it.
+1. Figure out what the arguments should be and change the method to use them.
+1. After having worked with the code, you should have an idea what the code does. Rename the method to reflect this.
 1. Compile and test.
-1. Replace the original block with a call to the method.
+1. Replace the original paragraph with a call to the method.
 1. Compile and test.
 
-Your list will probably vary in details from this one, that is fine! The only rule is to be a few undo steps away from working code. If you like, compare whatever you come up with against the steps Martin Fowler has in his book.
+### Concrete
 
-If you think the group needs it, you can demo using the steps to perform the refactoring on the exercise code. Then reset the code so they can do it again for themselves.
-
-### Exercise
-
-Work on a refactoring exercise that needs that refactoring, for example Tennis. Have people use the steps you came up with earlier.
+Work on a refactoring exercise that needs the refactoring you have demoed, for example Tennis. Have people use the steps you showed them earlier.
 
 Choose an exercise that already has good, fast tests.
 
 ### Conclusions
 
-Ask people to think about whether what they did was safe. How did it feel to have fast, reliable tests? Would you work differently if you didn't have that?
+Ask people to think about whether what they did was safe. How did it feel to have fast, reliable tests? Would you work differently if you didn't have them? How would using refactoring tools change your answers?
